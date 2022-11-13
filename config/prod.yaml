@@ -1,0 +1,4 @@
+http:
+  port: ":8080"
+pg:
+  db_conn_string: "user=postgres password=9R79OPvELSpiMo database=postgres host=/cloudsql/diesel-airfoil-282518:europe-southwest1:color-app-1"
