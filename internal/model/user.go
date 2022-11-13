@@ -9,7 +9,7 @@ func (u User) ToDto() UserDto {
 }
 
 type UserDto struct {
-	Id int `json:"id"`
+	Id int `json:"id" validate:"required"`
 }
 
 func (d UserDto) FromDto() User {

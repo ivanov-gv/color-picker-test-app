@@ -5,6 +5,8 @@ import (
 	"github.com/ivanov-gv/color-picker-test-app/internal/model"
 )
 
+//go:generate mockgen -source=interfaces.go -destination=./mock/mocks.go
+
 type ColorInterface interface {
 	GetAll(ctx context.Context, userId int) ([]model.Color, error)
 	Get(ctx context.Context, userId int, colorId int) (model.Color, error)

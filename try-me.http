@@ -1,0 +1,23 @@
+# create user
+POST https://color-app-hznvjhuleq-no.a.run.app/user
+Content-Type: application/json
+
+###
+# create color
+POST https://color-app-hznvjhuleq-no.a.run.app/user/1/color
+Content-Type: application/json
+
+{
+  "name": "my happy color",
+  "HEX": "#000000"
+}
+
+###
+# get colors
+GET https://color-app-hznvjhuleq-no.a.run.app/user/1/color
+Content-Type: application/json
+
+###
+# delete color
+DELETE https://color-app-hznvjhuleq-no.a.run.app/user/1/color/1
+Content-Type: application/json

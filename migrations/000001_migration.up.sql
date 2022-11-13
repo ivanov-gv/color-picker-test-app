@@ -9,6 +9,8 @@ CREATE TABLE IF NOT EXISTS color(
     user_id BIGINT,
     hex VARCHAR(7),
     name VARCHAR(20),
+    CONSTRAINT unique_color UNIQUE (user_id, hex),
+    CONSTRAINT unique_name UNIQUE (user_id, name),
 
     CONSTRAINT fk_user_account
         FOREIGN KEY(user_id)

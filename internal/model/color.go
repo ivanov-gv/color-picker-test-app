@@ -12,8 +12,8 @@ func (c Color) ToDto() ColorDto {
 
 type ColorDto struct {
 	Id   int    `json:"id"`
-	Name string `json:"name"`
-	HEX  string `json:"HEX"`
+	Name string `json:"name" validate:"required,max=20"`
+	HEX  string `json:"HEX" validate:"required,hexcolor"`
 }
 
 func (d ColorDto) FromDto() Color {
@@ -23,7 +23,7 @@ func (d ColorDto) FromDto() Color {
 type ColorAll []Color
 
 type ColorAllDto struct {
-	Colors []ColorDto `json:"colors"`
+	Colors []ColorDto `json:"colors" validate:"required"`
 }
 
 func (c ColorAll) ToDto() ColorAllDto {

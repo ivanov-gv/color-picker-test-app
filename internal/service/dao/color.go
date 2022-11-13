@@ -36,7 +36,7 @@ func (p *ColorDaoPostgres) GetAll(ctx context.Context, userId int) ([]model.Colo
 		ToSql()
 
 	if err != nil {
-		return nil, fmt.Errorf("can't build query: %s", err.Error())
+		return nil, fmt.Errorf("can't build query: %w", err)
 	}
 
 	rows, err := p.pool.Query(ctx, query, args...)
@@ -73,7 +73,7 @@ func (p *ColorDaoPostgres) Get(ctx context.Context, userId int, colorId int) (mo
 		ToSql()
 
 	if err != nil {
-		return model.Color{}, fmt.Errorf("can't build query: %s", err.Error())
+		return model.Color{}, fmt.Errorf("can't build query: %w", err)
 	}
 
 	rows, err := p.pool.Query(ctx, query, args...)
@@ -106,7 +106,7 @@ func (p *ColorDaoPostgres) Add(ctx context.Context, userId int, color model.Colo
 		ToSql()
 
 	if err != nil {
-		return model.Color{}, fmt.Errorf("can't build query: %s", err.Error())
+		return model.Color{}, fmt.Errorf("can't build query: %w", err)
 	}
 
 	rows, err := p.pool.Query(ctx, query, args...)
@@ -118,8 +118,12 @@ func (p *ColorDaoPostgres) Add(ctx context.Context, userId int, color model.Colo
 	var colorId int
 	for rows.Next() {
 		if err := rows.Scan(&colorId); err != nil {
-			return model.Color{}, fmt.Errorf("can't scan order_id: %s", err.Error())
+			return model.Color{}, fmt.Errorf("can't scan order_id: %w", err)
 		}
+	}
+
+	if err = rows.Err(); err != nil {
+		return model.Color{}, fmt.Errorf("can't add color: %w", err)
 	}
 
 	color.Id = colorId
@@ -137,7 +141,7 @@ func (p *ColorDaoPostgres) Delete(ctx context.Context, userId int, colorId int) 
 		ToSql()
 
 	if err != nil {
-		return fmt.Errorf("can't build query: %s", err.Error())
+		return fmt.Errorf("can't build query: %w", err)
 	}
 
 	rows, err := p.pool.Query(ctx, query, args...)

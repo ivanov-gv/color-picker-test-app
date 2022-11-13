@@ -17,7 +17,7 @@ func New(cfg config.PG) (*pgxpool.Pool, error) {
 
 	pool, err := pgxpool.ConnectConfig(context.Background(), poolConfig)
 	if err != nil {
-		return nil, fmt.Errorf("can't create pg pool: %s", err.Error())
+		return nil, fmt.Errorf("can't create pg pool: %w", err)
 	}
 
 	return pool, nil

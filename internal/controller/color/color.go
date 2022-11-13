@@ -60,10 +60,17 @@ func (c *controller) add() http.Handler {
 		}
 
 		color := dto.FromDto()
-		_, err = c.colorService.Add(c.ctx, userId, color)
+		color, err = c.colorService.Add(c.ctx, userId, color)
 		if err != nil {
 			c.log.Errorf("can't add color: %w", err)
 			http.Error(w, "can't add color: "+err.Error(), http.StatusBadRequest)
+			return
+		}
+
+		err = json.NewEncoder(w).Encode(color.ToDto())
+		if err != nil {
+			c.log.Errorf("can't encode color to dto: %w", err)
+			http.Error(w, "can't encode color to dto: "+err.Error(), http.StatusInternalServerError)
 			return
 		}
 
@@ -83,15 +90,15 @@ func (c *controller) get() http.Handler {
 
 		colors, err := c.colorService.GetAll(c.ctx, userId)
 		if err != nil {
-			c.log.Errorf("can't add color: %w", err)
-			http.Error(w, "can't add color: "+err.Error(), http.StatusBadRequest)
+			c.log.Errorf("can't get color: %w", err)
+			http.Error(w, "can't get color: "+err.Error(), http.StatusBadRequest)
 			return
 		}
 
 		err = json.NewEncoder(w).Encode(model.ColorAll(colors).ToDto())
 		if err != nil {
-			c.log.Errorf("can't encode user to dto: %w", err)
-			http.Error(w, "can't encode user to dto: "+err.Error(), http.StatusInternalServerError)
+			c.log.Errorf("can't encode color to dto: %w", err)
+			http.Error(w, "can't encode color to dto: "+err.Error(), http.StatusInternalServerError)
 			return
 		}
 

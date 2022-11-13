@@ -6,12 +6,11 @@ import (
 )
 
 const (
-	healthProbe = "/healtz"
+	Probe = "/healtz"
 )
 
 func NewK8s(r *mux.Router) {
-	// k8s healtz probe
-	r.HandleFunc(healthProbe, healtz().ServeHTTP).Methods("GET")
+	r.HandleFunc(Probe, healtz().ServeHTTP).Methods("GET")
 }
 
 func healtz() http.Handler {

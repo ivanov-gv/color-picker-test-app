@@ -1,2 +1,1 @@
-DROP TABLE IF EXISTS user_account;
-DROP TABLE IF EXISTS color;
+DROP TABLE IF EXISTS color, user_account;
