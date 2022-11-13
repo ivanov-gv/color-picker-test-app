@@ -1,4 +1,4 @@
-# color-picker-test-app
+# Color picker test app
 Backend of a simple app where the user can save his favorite color. It is an interview test task.
 
 ![img.png](./img.png)
@@ -55,7 +55,7 @@ Also, "name" could be only 20 letters long and "HEX" could be only valid hex col
 
 Integration tests, that checks those validators, are passed
 
-![img_1.png](img_1.png)
+![img_1.png](./img_1.png)
 
 
 Try this api yourself using **try-me.http**
