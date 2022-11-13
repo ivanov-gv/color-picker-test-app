@@ -1,7 +1,7 @@
 # color-picker-test-app
 Backend of a simple app where the user can save his favorite color. It is an interview test task.
 
-![img.png](img.png)
+![img.png](./img.png)
 
 ## It is deployed on Google cloud
 
